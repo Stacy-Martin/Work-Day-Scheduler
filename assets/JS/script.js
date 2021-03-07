@@ -24,6 +24,7 @@ function createRow(numRow) {
         let wrapper = $("<div>") //$("div")this selects all divs
         wrapper.attr('id', time +"-hour") //set id of wrapper to i + -hour (8-hour)
         wrapper.attr('class', 'row time-block')
+        
         let hourBlock = $('<h5>');
         hourBlock.attr('class', 'hour col-md-1');
         hourBlock.text(time +":00");
@@ -38,22 +39,25 @@ function createRow(numRow) {
         saveBtn.attr('id', time+'-btn')
 
         wrapper.append(saveBtn);
-        
+        // console.log(wrapper)
         container.append(wrapper)
     }
 }
 
+
+
 checkTime();
 function checkTime(){
     const rows = $('.time-block');
-    console.log(rows);
-
+    const timeTest = $(parseInt(rightNow));
+    console.log(parseInt(rightNow));
+    // console.log(this);
     for(let i = 0; i < rows.length; i++){
-        if (rows < rightNow) {
+        if (rows < timeTest) {
             $(this).addClass("past");
         }
       
-        else if (rows == rightNow) {
+        else if (rows == timeTest) {
             $(this).addClass("present")
         }
 
@@ -78,7 +82,7 @@ function storeForm(event){
     //setItem("time-hour", valueFromForm)
     //textArea.val() -> gets the value from a textarea
     //look up how to parse id from element
-    console.log(event.target)
+    // console.log(event.target)
 }
 
 function getForm(){
@@ -123,10 +127,10 @@ $(document).ready(
 // thus exposing it to JQuery's methods 
 
 // .saveBtn --> user event is saved to local storage, such that when page is refreshed the user's schedule persists 
-$(".saveBtn").on("click", function(){
-    userInput = $(this).siblings(".form").val().trim();
-    console.log(userInput);
-    hourSpan = $(this).siblings(".input").text().trim();
-    console.log(hourSpan);
-    localStorage.setItem(hourSpan, (userInput));
-})
+// $(".saveBtn").on("click", function(){
+//     userInput = $(this).siblings(".form").val().trim();
+//     console.log(userInput);
+//     hourSpan = $(this).siblings(".input").text().trim();
+//     console.log(hourSpan);
+//     localStorage.setItem(hourSpan, (userInput));
+// })
