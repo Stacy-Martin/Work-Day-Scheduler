@@ -21,6 +21,20 @@ body {
     border-left: 1px solid black;
     padding: 10px;
   }
+
+  .saveBtn {
+    border-left: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #06AED5;
+    color: white;
+    padding: 25px;
+  }
+  
+  .saveBtn i:hover {
+    font-size: 20px;
+    transition: all .3s ease-in-out;
+  }
   
   .description{
     white-space: pre-wrap;
@@ -58,17 +72,5 @@ body {
     color: white;
   }
   
-  .saveBtn {
-    border-left: 1px solid black;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: #06AED5;
-    color: white;
-    padding: 25px;
-  }
-  
-  .saveBtn i:hover {
-    font-size: 20px;
-    transition: all .3s ease-in-out;
-  }
+
   
