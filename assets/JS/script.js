@@ -7,20 +7,20 @@ const timeDisplayEl = $('#time-display');
 const rightNow = moment().format('MMM DD, YYYY [at] hh:mm:ss a');
 // handle displaying the time
 const container = $('.container')
+
 function displayTime() {
-    
     timeDisplayEl.text(rightNow);
 }
-
 setInterval(displayTime, 1000);
+// displayTime()
 
 // need to create a variable and function to create one hour intervals (10) from 8am - 5pm
-createRow(24); //numRow = 10
+createRow(10); //numRow = 10
 function createRow(numRow) {
     for(let i=0; i<numRow; i++) {
             //wrapper that is the row
     //create a row with textarea, hour, saveBtn
-        let time = i + 8;
+        let time = i;
         let wrapper = $("<div>") //$("div")this selects all divs
         wrapper.attr('id', time +"-hour") //set id of wrapper to i + -hour (8-hour)
         wrapper.attr('class', 'row time-block')
@@ -44,28 +44,31 @@ function createRow(numRow) {
     }
 }
 
-
-
+const currentHour = parseInt(moment().hours());
 checkTime();
 function checkTime(){
-    const rows = $('.time-block');
-    const timeTest = $(parseInt(rightNow));
-    console.log(parseInt(rightNow));
+    const rows = $("<.time-block>");
+    const timeBlockID = $("<hour>");
+    // console.log(currentHour);
+    // console.log(rows);
     // console.log(this);
+    console.log(timeBlockID);
     for(let i = 0; i < rows.length; i++){
-        if (rows < timeTest) {
-            $(this).addClass("past");
+        if (timeBlockID < currentHour) {
+            rows.addClass("past");
         }
       
-        else if (rows == timeTest) {
-            $(this).addClass("present")
+        else if (timeBlockID == currentHour) {
+            rows.addClass("present")
         }
 
         else {
-            $(this).addClass("future")
+            rows.addClass("future")
         }
     }
 }
+
+
         //if(timeBlockID < rightNow){
             //past
         //}
@@ -75,7 +78,6 @@ function checkTime(){
         //else{
             //future
         //}
-
 
 function storeForm(event){
     //accessing Local Storage whoooooooo
