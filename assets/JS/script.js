@@ -1,7 +1,3 @@
-// use init function to create a JS table FORM without having a click event??
-// is this attached to the root of the document, as soon as the page loads the 
-// form is created ...???
-
 // this variable sets where the time is displayed in the HTML
 const timeDisplayEl = $('#time-display');
 const rightNow = moment().format('MMM DD, YYYY [at] hh:mm:ss a');
@@ -14,15 +10,29 @@ function displayTime() {
 setInterval(displayTime, 1000);
 // displayTime()
 
-// need to create a variable and function to create one hour intervals (10) from 8am - 5pm
+//this var span makes the time tick 
+var span = document.getElementById('time-display');
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+setInterval(time, 1000);
+
+
+
+// a function to create one hour intervals (10) from 8am - 5pm
 createRow(10); //numRow = 10
 function createRow(numRow) {
     for(let i=0; i<numRow; i++) {
-            //wrapper that is the row
+    //wrapper that is the row
     //create a row with textarea, hour, saveBtn
-        let time = i;
+        let time = i+8;
         let wrapper = $("<div>") //$("div")this selects all divs
-        wrapper.attr('id', time +"-hour") //set id of wrapper to i + -hour (8-hour)
+        wrapper.attr('id', time) //set id of wrapper to i + -hour (8-hour)
         wrapper.attr('class', 'row time-block')
         
         let hourBlock = $('<h5>');
@@ -31,7 +41,7 @@ function createRow(numRow) {
         wrapper.append(hourBlock);
 
         let textArea = $("<textarea>");
-        textArea.attr('class', 'description future col-md-10');
+        textArea.attr('class', 'description col-md-10');
         wrapper.append(textArea);
 
         let saveBtn = $("<button>");
@@ -44,40 +54,40 @@ function createRow(numRow) {
     }
 }
 
+//this function adds the past/present/future class to the rows based on their
+// comparison to the current time
 const currentHour = parseInt(moment().hours());
 checkTime();
 function checkTime(){
-    const rows = $("<.time-block>");
-    const timeBlockID = $("<hour>");
-    // console.log(currentHour);
-    // console.log(rows);
-    // console.log(this);
-    console.log(timeBlockID);
+    const rows = $(".time-block");
+    
     for(let i = 0; i < rows.length; i++){
+        var timeBlockID = $(rows[i]).attr("id");
+        console.log(timeBlockID);
+
         if (timeBlockID < currentHour) {
-            rows.addClass("past");
+            $(rows[i]).addClass("past");
         }
       
         else if (timeBlockID == currentHour) {
-            rows.addClass("present")
+            $(rows[i]).addClass("present")
         }
 
         else {
-            rows.addClass("future")
+            $(rows[i]).addClass("future")
         }
     }
 }
 
-
-        //if(timeBlockID < rightNow){
-            //past
-        //}
-        //else if(timeBlockID == rightNow){
-            //present
-        //}
-        //else{
-            //future
-        //}
+// click in a timeblock to add user schedule (enter an event) in the textarea
+// .saveBtn --> user event is saved to local storage, such that when page is refreshed the user's schedule persists 
+$(".saveBtn").on("click", function(){
+    userInput = $(this).siblings(".description").val().trim();
+    console.log(userInput);
+    hourSpan = $(this).siblings(".time-block").text().trim();
+    console.log(hourSpan);
+    localStorage.setItem(hourSpan, (userInput));
+})
 
 function storeForm(event){
     //accessing Local Storage whoooooooo
@@ -97,42 +107,3 @@ $(document).ready(
     //this is event delegation having one event listener looking for saveBtn clicks
         $(".saveBtn").on("click", storeForm)
     )
-
-
-
-// want to manipulate the DOM using jquery / JS loop
-// 1. Create element = textarea
-// 2. Set attribute for class = .timeBlock 
-// 3. Set attribute for ID = #currentTime
-// 4. Append child ???  
-// 5. Form has 3 columns --> time (in one hour time block), the text area (input event here),
-// and the save button
-
-
-// Need to be able to add or remove a class from an element using JS depending on the time
-// when compared to the current time - this is the color coding of the 3 classes (.past, .present .future)
-// each row of the form will need to continually loop or pass through some type of time test 
-// to designate its class dynamically such that:
-// if the time is less than the current time it is .past and will be styled gray
-// else if the time is greater than the current time it is .future and will be styled green
-// else the time is within the current hour it is .present and will be styled red
-// time will need to be military time and parse the hour for this function to work
-// ? use jquery or javascript for this ?
-
-// click in a timeblock to add user schedule (enter an event) in the textarea
-
-// .saveBtn --> user event is saved to local storage, such that when page is refreshed the user's schedule persists 
-
-
-
-// $(this) takes thre current DOM element and turns it into a jQuery object
-// thus exposing it to JQuery's methods 
-
-// .saveBtn --> user event is saved to local storage, such that when page is refreshed the user's schedule persists 
-// $(".saveBtn").on("click", function(){
-//     userInput = $(this).siblings(".form").val().trim();
-//     console.log(userInput);
-//     hourSpan = $(this).siblings(".input").text().trim();
-//     console.log(hourSpan);
-//     localStorage.setItem(hourSpan, (userInput));
-// })
