@@ -19,3 +19,5 @@ Visit the app live at https://stacy-martin.github.io/Work-Day-Scheduler/
 
 I am always grateful for feedback! 
 Contact me at sbrown1031@gmail.com.
+
+Thanks to my study buddies ;), teacher, TA for technical assistance and many others for encouragement!
