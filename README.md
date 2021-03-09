@@ -12,7 +12,7 @@ The work-day-scheduler was created with dynamically updated HTML and CSS powered
 
 The following screenshot provides a preview of the website appearance:
 
-![]()
+![](https://raw.githubusercontent.com/Stacy-Martin/Work-Day-Scheduler/main/assets/Images/Screen%20Shot%202021-03-08%20at%2011.36.11%20PM.png)
 
 Visit the app live at https://stacy-martin.github.io/Work-Day-Scheduler/
 
