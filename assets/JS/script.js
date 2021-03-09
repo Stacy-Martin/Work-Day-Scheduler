@@ -107,3 +107,34 @@ $(document).ready(
     //this is event delegation having one event listener looking for saveBtn clicks
         $(".saveBtn").on("click", storeForm)
     )
+
+    // save button eventlistener
+//     $('.saveBtn').click(function() {
+//         saveData(this.id)     
+//     });
+
+//     // delete button listener and function
+//     $('.delete-button').click(function() {
+//         localStorage.clear();
+//         location.reload();
+//     });
+// });
+
+// save to localstorage
+// function saveData(btnId){
+//     let textareaId = "textarea" + btnId;
+//     let textarea = document.getElementById(textareaId);
+//     localStorage.setItem(btnId, textarea.value);
+// }
+
+// Retrieve descriptions from localStorage and insert into document
+// function restoreData() {
+//     for(let i = 8; i < 18; i++) {
+//         var eventDescText = localStorage.getItem(i);
+//         var textareaId = "textarea" + i;
+//         var textarea = document.getElementById(textareaId);
+//         textarea.value = eventDescText;
+//     }
+// }
+
+
